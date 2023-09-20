@@ -9,12 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccueilController extends AbstractController
 {
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'app_accueil')]
     public function index(CategorieRepository $categorieRepository): Response
     {
         $categories = $categorieRepository->findAll();
+        $findby = $categorieRepository->findBy(['cat_parent'=>null]);
+        $findpc = $categorieRepository->findpcn();
         return $this->render('accueil/index.html.twig', [
-            'categories' => $categories,
+            'categories' => $categories, 'findby' => $findby ,'findpc' => $findpc ,var_dump($findpc ),
         // return $this->render('accueil/index.html.twig', [
         //     'controller_name' => 'AccueilController',
         ]);

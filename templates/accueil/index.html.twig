@@ -7,10 +7,10 @@
 
 <div class="container">
     <div class="row ">
-{% for categorie in categories %}
+{% for f in findby %}
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center my-5 " >
-            <a href="/sous_categorie/{{ categorie.catnom }}">
-                <img class="imageCategorie "src="/images/{{ categorie.catimage }}"> 
+            <a href="/sous_categorie/{{ f.catnom }}">
+                <img class="imageCategorie "src="/images/{{ f.catimage }}"> 
              
                 </img>
             </a>

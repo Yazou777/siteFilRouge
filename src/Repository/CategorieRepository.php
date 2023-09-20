@@ -21,6 +21,26 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    public function findpcn(): array
+    {
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.cat_nom = :PC')
+            ->setParameter('PC', 'PC');
+           // ->orderBy('p.price', 'ASC');
+
+        // if (!$includeUnavailableProducts) {
+        //     $qb->andWhere('p.available = TRUE');
+        // }
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+
+        // to get just one result:
+        // $product = $query->setMaxResults(1)->getOneOrNullResult();
+    }
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects
 //     */
