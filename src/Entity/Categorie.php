@@ -19,6 +19,9 @@ class Categorie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $cat_image = null;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'cat_parent')]
+    private ?self $cat_parent = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Categorie
     public function setCatImage(?string $cat_image): static
     {
         $this->cat_image = $cat_image;
+
+        return $this;
+    }
+
+    public function getCatParent(): ?self
+    {
+        return $this->cat_parent;
+    }
+
+    public function setCatParent(?self $cat_parent): static
+    {
+        $this->cat_parent = $cat_parent;
 
         return $this;
     }
