@@ -2,9 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Produit;
 use App\Entity\Categorie;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
@@ -18,11 +19,26 @@ class AppFixtures extends Fixture
         $categoriePs5->setCatImage("ps5Logo.jpg");
         $manager->persist($categoriePs5);
 
+
+
         $sousCatPs5Jeux = new Categorie();
         $sousCatPs5Jeux->setCatNom("JEUX PS5");
         $sousCatPs5Jeux->setCatImage("ps5Jeux2.jpg");
         $sousCatPs5Jeux->setCatParent($categoriePs5);
         $manager->persist($sousCatPs5Jeux);
+
+        $jeuxPs5GodOfWar = new Produit();
+        $jeuxPs5GodOfWar->setProNom("God of war");
+        $jeuxPs5GodOfWar->setProPrix(79.99);
+        $manager->persist($jeuxPs5GodOfWar);
+        $sousCatPs5Jeux->addProduit($jeuxPs5GodOfWar);
+
+        $jeuxPs5TheLastOfUsP2 = new Produit();
+        $jeuxPs5TheLastOfUsP2->setProNom("The last of us part 2");
+        $jeuxPs5TheLastOfUsP2->setProPrix(79.99);
+        $manager->persist($jeuxPs5TheLastOfUsP2);
+        $sousCatPs5Jeux->addProduit($jeuxPs5TheLastOfUsP2);
+
 
 
         $sousCatPs5Console = new Categorie();
@@ -30,6 +46,12 @@ class AppFixtures extends Fixture
         $sousCatPs5Console->setCatImage("ps5Console.jpg");
         $sousCatPs5Console->setCatParent($categoriePs5);
         $manager->persist($sousCatPs5Console);
+
+        $consolePS5 = new Produit();
+        $consolePS5->setProNom("Console PS5 blanche");
+        $consolePS5->setProPrix(499.99);
+        $manager->persist($consolePS5);
+        $sousCatPs5Console->addProduit($consolePS5);
 
         $sousCatPs5Accessoires = new Categorie();
         $sousCatPs5Accessoires->setCatNom("Accessoires PS5");

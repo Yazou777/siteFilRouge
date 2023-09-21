@@ -32,6 +32,10 @@ class Produit
     #[ORM\Column(nullable: true)]
     private ?int $pro_stkale = null;
 
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?categorie $cat = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +109,18 @@ class Produit
     public function setProStkale(?int $pro_stkale): static
     {
         $this->pro_stkale = $pro_stkale;
+
+        return $this;
+    }
+
+    public function getCat(): ?categorie
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?categorie $cat): static
+    {
+        $this->cat = $cat;
 
         return $this;
     }
