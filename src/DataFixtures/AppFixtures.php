@@ -30,14 +30,23 @@ class AppFixtures extends Fixture
         $jeuxPs5GodOfWar = new Produit();
         $jeuxPs5GodOfWar->setProNom("God of war");
         $jeuxPs5GodOfWar->setProPrix(79.99);
+        $jeuxPs5GodOfWar->setProImage("ps5JeuxGodOfWar.jpg");
         $manager->persist($jeuxPs5GodOfWar);
         $sousCatPs5Jeux->addProduit($jeuxPs5GodOfWar);
 
         $jeuxPs5TheLastOfUsP2 = new Produit();
         $jeuxPs5TheLastOfUsP2->setProNom("The last of us part 2");
         $jeuxPs5TheLastOfUsP2->setProPrix(79.99);
+        $jeuxPs5TheLastOfUsP2->setProImage("ps5JeuxTheLastOfUsP2.jpg");
         $manager->persist($jeuxPs5TheLastOfUsP2);
         $sousCatPs5Jeux->addProduit($jeuxPs5TheLastOfUsP2);
+
+        $jeuxPs5TheLastOfUsP1 = new Produit();
+        $jeuxPs5TheLastOfUsP1->setProNom("The last of us part 1");
+        $jeuxPs5TheLastOfUsP1->setProPrix(79.99);
+        $jeuxPs5TheLastOfUsP1->setProImage("ps5JeuxTheLastOfUsP1.jpg");
+        $manager->persist($jeuxPs5TheLastOfUsP1);
+        $sousCatPs5Jeux->addProduit($jeuxPs5TheLastOfUsP1);
 
 
 
@@ -48,16 +57,54 @@ class AppFixtures extends Fixture
         $manager->persist($sousCatPs5Console);
 
         $consolePS5 = new Produit();
-        $consolePS5->setProNom("Console PS5 blanche");
+        $consolePS5->setProNom("Console PS5 standart");
         $consolePS5->setProPrix(499.99);
+        $consolePS5->setProImage("ps5ConsoleBox.jpg");
         $manager->persist($consolePS5);
         $sousCatPs5Console->addProduit($consolePS5);
+
+        $consolePS5 = new Produit();
+        $consolePS5->setProNom("Console PS5 standart + Horizon Forbidden West PS5");
+        $consolePS5->setProPrix(549.99);
+        $consolePS5->setProImage("ps5Console+HorizonFW.webp");
+        $manager->persist($consolePS5);
+        $sousCatPs5Console->addProduit($consolePS5);
+
+        $consolePS5 = new Produit();
+        $consolePS5->setProNom("Console PS5 standart + God Of War Ragnarök PS5");
+        $consolePS5->setProPrix(549.99);
+        $consolePS5->setProImage("ps5Console+GOW.webp");
+        $manager->persist($consolePS5);
+        $sousCatPs5Console->addProduit($consolePS5);
+
+
 
         $sousCatPs5Accessoires = new Categorie();
         $sousCatPs5Accessoires->setCatNom("Accessoires PS5");
         $sousCatPs5Accessoires->setCatImage("ps5Accessoire.jpg");
         $sousCatPs5Accessoires->setCatParent($categoriePs5);
         $manager->persist($sousCatPs5Accessoires);
+
+        $accessoirePS5 = new Produit();
+        $accessoirePS5->setProNom("Casque Playstation VR");
+        $accessoirePS5->setProPrix(239.99);
+        $accessoirePS5->setProImage("ps5AccessoireCasqueVR.jpg");
+        $manager->persist($accessoirePS5);
+        $sousCatPs5Accessoires->addProduit($accessoirePS5);
+
+        $accessoirePS5 = new Produit();
+        $accessoirePS5->setProNom("Manette Playstation 5 officielle DualSense");
+        $accessoirePS5->setProPrix(69.95);
+        $accessoirePS5->setProImage("ps5AccessoireManette.jpg");
+        $manager->persist($accessoirePS5);
+        $sousCatPs5Accessoires->addProduit($accessoirePS5);
+
+        $accessoirePS5 = new Produit();
+        $accessoirePS5->setProNom("Casque-micro sans fil Pulse 3D pour Playtation 5");
+        $accessoirePS5->setProPrix(89.99);
+        $accessoirePS5->setProImage("ps5AccessoireCasque.jpg");
+        $manager->persist($accessoirePS5);
+        $sousCatPs5Accessoires->addProduit($accessoirePS5);
 ////////////////////////////////////////////
 
         $categorieXboxSeries = new Categorie();
