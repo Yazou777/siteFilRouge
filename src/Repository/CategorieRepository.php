@@ -41,6 +41,31 @@ class CategorieRepository extends ServiceEntityRepository
         // to get just one result:
         // $product = $query->setMaxResults(1)->getOneOrNullResult();
     }
+
+    public function findId($cat_nom): Categorie
+    {
+        $qb = $this->createQueryBuilder('p')
+        ->where('p.cat_nom = :cat_nom')
+        ->setParameter('cat_nom', $cat_nom);
+        $query = $qb->getQuery();
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findIdSql(string $cat_nom): array{
+        $conn = $this->getEntityManager()->getConnection();
+
+
+        $sql = '
+            SELECT id FROM categorie p
+            WHERE p.cat_nom = :cat_nom
+            ';
+
+        $resultSet = $conn->executeQuery($sql, ['cat_nom' => $cat_nom]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects
 //     */
