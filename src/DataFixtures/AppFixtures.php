@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Entity\Fournisseur;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -226,6 +227,56 @@ class AppFixtures extends Fixture
         $categoriePcAccesoires->setCatImage("pcAccessoire.png");
         $categoriePcAccesoires->setCatParent($categoriePc);
         $manager->persist($categoriePcAccesoires);
+////////////////////////////////////
+
+
+        $Fou = new Fournisseur();
+        $Fou->setFouNom("Play");
+        $Fou->setFouPrenom("Station");
+        $Fou->setFouSocieteNom("Playstation");
+        $Fou->setFouRue("5 Rue du psn");
+        $Fou->setFouVille("Tokyo");
+        $Fou->setFouCodePostal("00000");
+        $Fou->setFouPays("Japon");
+        $Fou->setFouTelephone("0123456789");
+        $Fou->setFouEmail("playstation@gmail.com");
+        $manager->persist($Fou);
+        
+        $Fou = new Fournisseur();
+        $Fou->setFouNom("X");
+        $Fou->setFouPrenom("Box");
+        $Fou->setFouSocieteNom("Xbox");
+        $Fou->setFouRue("10 Rue du gamepass");
+        $Fou->setFouVille("New York");
+        $Fou->setFouCodePostal("00000");
+        $Fou->setFouPays("USA");
+        $Fou->setFouTelephone("0123456789");
+        $Fou->setFouEmail("xbox@gmail.com");
+        $manager->persist($Fou);
+
+        $Fou = new Fournisseur();
+        $Fou->setFouNom("Nin");
+        $Fou->setFouPrenom("Tendo");
+        $Fou->setFouSocieteNom("Nintendo");
+        $Fou->setFouRue("15 Rue du portable");
+        $Fou->setFouVille("Tokyo");
+        $Fou->setFouCodePostal("00000");
+        $Fou->setFouPays("Japon");
+        $Fou->setFouTelephone("0123456789");
+        $Fou->setFouEmail("nintendo@gmail.com");
+        $manager->persist($Fou);
+
+        $Fou = new Fournisseur();
+        $Fou->setFouNom("Newell");
+        $Fou->setFouPrenom("Gabe");
+        $Fou->setFouSocieteNom("Steam");
+        $Fou->setFouRue("20 Rue du pc");
+        $Fou->setFouVille("New York");
+        $Fou->setFouCodePostal("00000");
+        $Fou->setFouPays("USA");
+        $Fou->setFouTelephone("0123456789");
+        $Fou->setFouEmail("steam@gmail.com");
+        $manager->persist($Fou);
 
         $manager->flush();
     }
