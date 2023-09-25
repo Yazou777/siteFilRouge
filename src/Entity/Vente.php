@@ -35,6 +35,14 @@ class Vente
     #[ORM\Column(type: Types::DECIMAL, precision: 19, scale: 4, nullable: true)]
     private ?string $ven_prix3 = null;
 
+    #[ORM\ManyToOne(targetEntity: Fournisseur::class ,inversedBy: 'ventes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?fournisseur $fou = null;
+
+    #[ORM\ManyToOne(inversedBy: 'ventes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?produit $pro = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +128,30 @@ class Vente
     public function setVenPrix3(?string $ven_prix3): static
     {
         $this->ven_prix3 = $ven_prix3;
+
+        return $this;
+    }
+
+    public function getFou(): ?fournisseur
+    {
+        return $this->fou;
+    }
+
+    public function setFou(?fournisseur $fou): static
+    {
+        $this->fou = $fou;
+
+        return $this;
+    }
+
+    public function getPro(): ?produit
+    {
+        return $this->pro;
+    }
+
+    public function setPro(?produit $pro): static
+    {
+        $this->pro = $pro;
 
         return $this;
     }

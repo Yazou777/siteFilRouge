@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Vente;
 use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Fournisseur;
@@ -64,19 +65,19 @@ class AppFixtures extends Fixture
         $manager->persist($consolePS5);
         $sousCatPs5Console->addProduit($consolePS5);
 
-        $consolePS5 = new Produit();
-        $consolePS5->setProNom("Console PS5 standart + Horizon Forbidden West PS5");
-        $consolePS5->setProPrix(549.99);
-        $consolePS5->setProImage("ps5Console+HorizonFW");
-        $manager->persist($consolePS5);
-        $sousCatPs5Console->addProduit($consolePS5);
+        $consolePS5HFW = new Produit();
+        $consolePS5HFW->setProNom("Console PS5 standart + Horizon Forbidden West PS5");
+        $consolePS5HFW->setProPrix(549.99);
+        $consolePS5HFW->setProImage("ps5Console+HorizonFW");
+        $manager->persist($consolePS5HFW);
+        $sousCatPs5Console->addProduit($consolePS5HFW);
 
-        $consolePS5 = new Produit();
-        $consolePS5->setProNom("Console PS5 standart + God Of War Ragnarök PS5");
-        $consolePS5->setProPrix(549.99);
-        $consolePS5->setProImage("ps5Console+GOW");
-        $manager->persist($consolePS5);
-        $sousCatPs5Console->addProduit($consolePS5);
+        $consolePS5GOW = new Produit();
+        $consolePS5GOW->setProNom("Console PS5 standart + God Of War Ragnarök PS5");
+        $consolePS5GOW->setProPrix(549.99);
+        $consolePS5GOW->setProImage("ps5Console+GOW");
+        $manager->persist($consolePS5GOW);
+        $sousCatPs5Console->addProduit($consolePS5GOW);
 
 
 
@@ -230,53 +231,77 @@ class AppFixtures extends Fixture
 ////////////////////////////////////
 
 
-        $Fou = new Fournisseur();
-        $Fou->setFouNom("Play");
-        $Fou->setFouPrenom("Station");
-        $Fou->setFouSocieteNom("Playstation");
-        $Fou->setFouRue("5 Rue du psn");
-        $Fou->setFouVille("Tokyo");
-        $Fou->setFouCodePostal("00000");
-        $Fou->setFouPays("Japon");
-        $Fou->setFouTelephone("0123456789");
-        $Fou->setFouEmail("playstation@gmail.com");
-        $manager->persist($Fou);
+        $FouPlay = new Fournisseur();
+        $FouPlay->setFouNom("Play");
+        $FouPlay->setFouPrenom("Station");
+        $FouPlay->setFouSocieteNom("Playstation");
+        $FouPlay->setFouRue("5 Rue du psn");
+        $FouPlay->setFouVille("Tokyo");
+        $FouPlay->setFouCodePostal("00000");
+        $FouPlay->setFouPays("Japon");
+        $FouPlay->setFouTelephone("0123456789");
+        $FouPlay->setFouEmail("playstation@gmail.com");
+        $manager->persist($FouPlay);
         
-        $Fou = new Fournisseur();
-        $Fou->setFouNom("X");
-        $Fou->setFouPrenom("Box");
-        $Fou->setFouSocieteNom("Xbox");
-        $Fou->setFouRue("10 Rue du gamepass");
-        $Fou->setFouVille("New York");
-        $Fou->setFouCodePostal("00000");
-        $Fou->setFouPays("USA");
-        $Fou->setFouTelephone("0123456789");
-        $Fou->setFouEmail("xbox@gmail.com");
-        $manager->persist($Fou);
+        $FouXbox = new Fournisseur();
+        $FouXbox->setFouNom("X");
+        $FouXbox->setFouPrenom("Box");
+        $FouXbox->setFouSocieteNom("Xbox");
+        $FouXbox->setFouRue("10 Rue du gamepass");
+        $FouXbox->setFouVille("New York");
+        $FouXbox->setFouCodePostal("00000");
+        $FouXbox->setFouPays("USA");
+        $FouXbox->setFouTelephone("0123456789");
+        $FouXbox->setFouEmail("xbox@gmail.com");
+        $manager->persist($FouXbox);
 
-        $Fou = new Fournisseur();
-        $Fou->setFouNom("Nin");
-        $Fou->setFouPrenom("Tendo");
-        $Fou->setFouSocieteNom("Nintendo");
-        $Fou->setFouRue("15 Rue du portable");
-        $Fou->setFouVille("Tokyo");
-        $Fou->setFouCodePostal("00000");
-        $Fou->setFouPays("Japon");
-        $Fou->setFouTelephone("0123456789");
-        $Fou->setFouEmail("nintendo@gmail.com");
-        $manager->persist($Fou);
+        $FouNintendo = new Fournisseur();
+        $FouNintendo->setFouNom("Nin");
+        $FouNintendo->setFouPrenom("Tendo");
+        $FouNintendo->setFouSocieteNom("Nintendo");
+        $FouNintendo->setFouRue("15 Rue du portable");
+        $FouNintendo->setFouVille("Tokyo");
+        $FouNintendo->setFouCodePostal("00000");
+        $FouNintendo->setFouPays("Japon");
+        $FouNintendo->setFouTelephone("0123456789");
+        $FouNintendo->setFouEmail("nintendo@gmail.com");
+        $manager->persist($FouNintendo);
 
-        $Fou = new Fournisseur();
-        $Fou->setFouNom("Newell");
-        $Fou->setFouPrenom("Gabe");
-        $Fou->setFouSocieteNom("Steam");
-        $Fou->setFouRue("20 Rue du pc");
-        $Fou->setFouVille("New York");
-        $Fou->setFouCodePostal("00000");
-        $Fou->setFouPays("USA");
-        $Fou->setFouTelephone("0123456789");
-        $Fou->setFouEmail("steam@gmail.com");
-        $manager->persist($Fou);
+        $FouSteam = new Fournisseur();
+        $FouSteam->setFouNom("Newell");
+        $FouSteam->setFouPrenom("Gabe");
+        $FouSteam->setFouSocieteNom("Steam");
+        $FouSteam->setFouRue("20 Rue du pc");
+        $FouSteam->setFouVille("New York");
+        $FouSteam->setFouCodePostal("00000");
+        $FouSteam->setFouPays("USA");
+        $FouSteam->setFouTelephone("0123456789");
+        $FouSteam->setFouEmail("steam@gmail.com");
+        $manager->persist($FouSteam);
+
+        $vente = new Vente();
+        $vente->setVenDelliv(2);
+        $vente->setVenQte1(0);
+        $vente->setVenPrix1(79.99);
+        $manager->persist($vente);
+        $FouPlay->addVente($vente);
+        $jeuxPs5GodOfWar->addVente($vente);
+
+        $vente = new Vente();
+        $vente->setVenDelliv(2);
+        $vente->setVenQte1(0);
+        $vente->setVenPrix1(599.99);
+        $manager->persist($vente);
+        $FouPlay->addVente($vente);
+        $consolePS5->addVente($vente);
+
+        $vente = new Vente();
+        $vente->setVenDelliv(2);
+        $vente->setVenQte1(0);
+        $vente->setVenPrix1(649.99);
+        $manager->persist($vente);
+        $FouPlay->addVente($vente);
+        $consolePS5GOW->addVente($vente);
 
         $manager->flush();
     }
