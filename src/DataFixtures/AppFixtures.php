@@ -120,7 +120,7 @@ class AppFixtures extends Fixture
 
         $sousCategorieXboxSeriesConsole = new Categorie();
         $sousCategorieXboxSeriesConsole->setCatNom("Consoles XBOX SERIES");
-        $sousCategorieXboxSeriesConsole->setCatImage("xboxOneSeriesConsole.jpg");
+        $sousCategorieXboxSeriesConsole->setCatImage("xboxSeriesConsole.jpg");
         $sousCategorieXboxSeriesConsole->setCatParent($categorieXboxSeries);
         $manager->persist($sousCategorieXboxSeriesConsole);
 
@@ -199,7 +199,7 @@ class AppFixtures extends Fixture
 
         $categorieXboxOneAccesoires = new Categorie();
         $categorieXboxOneAccesoires->setCatNom("Accessoires XBOX ONE");
-        $categorieXboxOneAccesoires->setCatImage("xboxOneaccessoire.jpg");
+        $categorieXboxOneAccesoires->setCatImage("xboxOneAccessoire.jpg");
         $categorieXboxOneAccesoires->setCatParent($categorieXboxOne);
         $manager->persist($categorieXboxOneAccesoires);
 //////////////////////////////////////////////////
