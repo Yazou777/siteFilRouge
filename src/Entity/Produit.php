@@ -25,7 +25,7 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pro_image = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column( nullable: true, type:Types::TEXT)]
     private ?string $pro_description = null;
 
     #[ORM\Column(nullable: true)]

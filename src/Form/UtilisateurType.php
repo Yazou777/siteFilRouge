@@ -24,4 +24,5 @@ class UtilisateurType extends AbstractType
             'data_class' => Utilisateur::class,
         ]);
     }
+
 }
