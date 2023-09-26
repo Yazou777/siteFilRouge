@@ -6,6 +6,7 @@ use App\Entity\Vente;
 use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Fournisseur;
+use App\Entity\Utilisateur;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -302,7 +303,28 @@ class AppFixtures extends Fixture
         $manager->persist($vente);
         $FouPlay->addVente($vente);
         $consolePS5GOW->addVente($vente);
+///////////////////////////////////////
 
+
+        $commercial1 = new Utilisateur();
+        $commercial1->setemail("commercial1@gmail.com");
+        $commercial1->setRoles([]);
+        $commercial1->setPassword('123456');
+        $manager->persist($commercial1);
+
+        $client1 = new Utilisateur();
+        $client1->setemail("client1@gmail.com");
+        $client1->setRoles([]);
+        $client1->setPassword('123456');
+        $client1->setUtiCommercial($commercial1);
+        $manager->persist($client1);
+
+        $client2 = new Utilisateur();
+        $client2->setemail("client2@gmail.com");
+        $client2->setRoles([]);
+        $client2->setPassword('123456');
+        $client2->setUtiCommercial($commercial1);
+        $manager->persist($client2);
         $manager->flush();
     }
 }
