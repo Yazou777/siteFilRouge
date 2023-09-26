@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Vente;
 use App\Entity\Produit;
+use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\Fournisseur;
 use App\Entity\Utilisateur;
@@ -325,6 +326,16 @@ class AppFixtures extends Fixture
         $client2->setPassword('123456');
         $client2->setUtiCommercial($commercial1);
         $manager->persist($client2);
+
+        $commande1 = new Commande();
+        $commande1->setComCommentaire("attention aux chiens");
+        $manager->persist($commande1);
+
+
+
         $manager->flush();
+
+
+     
     }
 }
