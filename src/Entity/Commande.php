@@ -21,6 +21,10 @@ class Commande
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $com_commentaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $com_uti = null;
+
     public function __construct()
     {
         $this->com_date = new \DateTimeImmutable();
@@ -59,6 +63,18 @@ class Commande
     public function setComCommentaire(?string $com_commentaire): static
     {
         $this->com_commentaire = $com_commentaire;
+
+        return $this;
+    }
+
+    public function getComUti(): ?Utilisateur
+    {
+        return $this->com_uti;
+    }
+
+    public function setComUti(?Utilisateur $com_uti): static
+    {
+        $this->com_uti = $com_uti;
 
         return $this;
     }

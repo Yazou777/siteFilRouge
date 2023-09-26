@@ -37,9 +37,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'uti_commercial', targetEntity: self::class)]
     private Collection $utilisateurs;
 
+    #[ORM\OneToMany(mappedBy: 'com_uti', targetEntity: Commande::class)]
+    private Collection $commandes;
+
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +153,36 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($utilisateur->getUtiCommercial() === $this) {
                 $utilisateur->setUtiCommercial(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setComUti($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getComUti() === $this) {
+                $commande->setComUti(null);
             }
         }
 

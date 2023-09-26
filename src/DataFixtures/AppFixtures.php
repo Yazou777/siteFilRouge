@@ -327,15 +327,21 @@ class AppFixtures extends Fixture
         $client2->setUtiCommercial($commercial1);
         $manager->persist($client2);
 
-        $commande1 = new Commande();
-        $commande1->setComCommentaire("attention aux chiens");
-        $manager->persist($commande1);
+////////////////////////////////////////////
+
+        $commande1client1 = new Commande();
+        $commande1client1->setComCommentaire("attention aux chiens");
+        $manager->persist($commande1client1);
+        $client1->addCommande($commande1client1);
+
+        $commande2client1 = new Commande();
+        $commande2client1->setComCommentaire("attention aux chiennes");
+        $manager->persist($commande2client1);
+        $client1->addCommande($commande2client1);
 
 
 
         $manager->flush();
 
-
-     
     }
 }
