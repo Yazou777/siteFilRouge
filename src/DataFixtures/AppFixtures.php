@@ -9,6 +9,7 @@ use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\Fournisseur;
 use App\Entity\Utilisateur;
+use App\Entity\BonLivraison;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -363,6 +364,15 @@ class AppFixtures extends Fixture
         $commande1client1->addPanier($panier);
         $accessoirePS5M->addPanier($panier);
 
+ ////////////////////////////////////    
+
+        $bonL = new BonLivraison();
+        $manager->persist($bonL);
+        $commande1client1->addBonLivraison($bonL);
+
+        $bonL = new BonLivraison();
+        $manager->persist($bonL);
+        $commande2client1->addBonLivraison($bonL);
 
         $manager->flush();
 

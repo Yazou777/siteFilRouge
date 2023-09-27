@@ -30,10 +30,14 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'pan_com', targetEntity: Panier::class)]
     private Collection $paniers;
 
+    #[ORM\OneToMany(mappedBy: 'bon_com', targetEntity: BonLivraison::class)]
+    private Collection $bonLivraisons;
+
     public function __construct()
     {
         $this->com_date = new \DateTimeImmutable();
         $this->paniers = new ArrayCollection();
+        $this->bonLivraisons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +113,36 @@ class Commande
             // set the owning side to null (unless already changed)
             if ($panier->getPanCom() === $this) {
                 $panier->setPanCom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BonLivraison>
+     */
+    public function getBonLivraisons(): Collection
+    {
+        return $this->bonLivraisons;
+    }
+
+    public function addBonLivraison(BonLivraison $bonLivraison): static
+    {
+        if (!$this->bonLivraisons->contains($bonLivraison)) {
+            $this->bonLivraisons->add($bonLivraison);
+            $bonLivraison->setBonCom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBonLivraison(BonLivraison $bonLivraison): static
+    {
+        if ($this->bonLivraisons->removeElement($bonLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($bonLivraison->getBonCom() === $this) {
+                $bonLivraison->setBonCom(null);
             }
         }
 
