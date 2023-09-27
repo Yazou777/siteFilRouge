@@ -41,9 +41,13 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'pro', targetEntity: Vente::class)]
     private Collection $ventes;
 
+    #[ORM\OneToMany(mappedBy: 'pan_pro', targetEntity: Panier::class)]
+    private Collection $paniers;
+
     public function __construct()
     {
         $this->ventes = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +163,36 @@ class Produit
             // set the owning side to null (unless already changed)
             if ($vente->getPro() === $this) {
                 $vente->setPro(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panier>
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(Panier $panier): static
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setPanPro($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): static
+    {
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getPanPro() === $this) {
+                $panier->setPanPro(null);
             }
         }
 

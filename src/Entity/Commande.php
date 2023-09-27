@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,9 +27,13 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $com_uti = null;
 
+    #[ORM\OneToMany(mappedBy: 'pan_com', targetEntity: Panier::class)]
+    private Collection $paniers;
+
     public function __construct()
     {
         $this->com_date = new \DateTimeImmutable();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Commande
     public function setComUti(?Utilisateur $com_uti): static
     {
         $this->com_uti = $com_uti;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panier>
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(Panier $panier): static
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setPanCom($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): static
+    {
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getPanCom() === $this) {
+                $panier->setPanCom(null);
+            }
+        }
 
         return $this;
     }

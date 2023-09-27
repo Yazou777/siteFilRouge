@@ -20,6 +20,14 @@ class Panier
     #[ORM\Column]
     private ?int $pan_quantite = null;
 
+    #[ORM\ManyToOne(inversedBy: 'paniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Commande $pan_com = null;
+
+    #[ORM\ManyToOne(inversedBy: 'paniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Produit $pan_pro = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +53,30 @@ class Panier
     public function setPanQuantite(int $pan_quantite): static
     {
         $this->pan_quantite = $pan_quantite;
+
+        return $this;
+    }
+
+    public function getPanCom(): ?Commande
+    {
+        return $this->pan_com;
+    }
+
+    public function setPanCom(?Commande $pan_com): static
+    {
+        $this->pan_com = $pan_com;
+
+        return $this;
+    }
+
+    public function getPanPro(): ?Produit
+    {
+        return $this->pan_pro;
+    }
+
+    public function setPanPro(?Produit $pan_pro): static
+    {
+        $this->pan_pro = $pan_pro;
 
         return $this;
     }

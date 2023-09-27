@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Vente;
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\Commande;
 use App\Entity\Categorie;
@@ -96,12 +97,12 @@ class AppFixtures extends Fixture
         $manager->persist($accessoirePS5);
         $sousCatPs5Accessoires->addProduit($accessoirePS5);
 
-        $accessoirePS5 = new Produit();
-        $accessoirePS5->setProNom("Manette Playstation 5 officielle DualSense");
-        $accessoirePS5->setProPrix(69.95);
-        $accessoirePS5->setProImage("ps5AccessoireManette.jpg");
-        $manager->persist($accessoirePS5);
-        $sousCatPs5Accessoires->addProduit($accessoirePS5);
+        $accessoirePS5M = new Produit();
+        $accessoirePS5M->setProNom("Manette Playstation 5 officielle DualSense");
+        $accessoirePS5M->setProPrix(69.95);
+        $accessoirePS5M->setProImage("ps5AccessoireManette.jpg");
+        $manager->persist($accessoirePS5M);
+        $sousCatPs5Accessoires->addProduit($accessoirePS5M);
 
         $accessoirePS5 = new Produit();
         $accessoirePS5->setProNom("Casque-micro sans fil Pulse 3D pour Playtation 5");
@@ -339,6 +340,28 @@ class AppFixtures extends Fixture
         $manager->persist($commande2client1);
         $client1->addCommande($commande2client1);
 
+////////////////////////////////////////
+
+        $panier = new Panier();
+        $panier->setPanPrixUnite(666);
+        $panier->setPanQuantite(1);
+        $manager->persist($panier);
+        $commande1client1->addPanier($panier);
+        $consolePS5->addPanier($panier);
+
+        $panier = new Panier();
+        $panier->setPanPrixUnite(777);
+        $panier->setPanQuantite(1);
+        $manager->persist($panier);
+        $commande1client1->addPanier($panier);
+        $consolePS5->addPanier($panier);
+
+        $panier = new Panier();
+        $panier->setPanPrixUnite(77);
+        $panier->setPanQuantite(1);
+        $manager->persist($panier);
+        $commande1client1->addPanier($panier);
+        $accessoirePS5M->addPanier($panier);
 
 
         $manager->flush();
